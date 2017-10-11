@@ -1,0 +1,16 @@
+img {
+  width: 30vw;
+}
+
+.price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+
+.price {
+  color: green;
+}

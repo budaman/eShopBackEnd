@@ -34,6 +34,11 @@ export class AuthService {
     .map(res => res.json())
   }
 
+  deleteProduct(id) {
+    return this.http.get('products/delete', 'labas')
+    .map(res=> res.json())
+  }
+
   storeUserData(token, user) {
     localStorage.setItem('id_token', token)
     localStorage.setItem('user', JSON.stringify(user))

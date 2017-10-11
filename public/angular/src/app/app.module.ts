@@ -15,9 +15,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { ValidateService } from './services/validate.service'
 import { FlashMessagesModule } from 'angular2-flash-messages'
 import { AuthService } from './services/auth.service'
+import { GetService } from './services/get.services'
 import { CreateProductService } from './services/create-product.service'
 import { AuthGuard } from './guards/auth.guard';
-import { ProductComponent } from './product/product.component'
+import { ProductComponent } from './product/product.component';
+import { ShowProductsComponent } from './show-products/show-products.component'
 
 const appRoutes: Routes = [
   {path:'',component: HomeComponent},
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
   {path:'login',component: LoginComponent},
   {path:'dashboard',component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'profile',component: ProfileComponent, canActivate:[AuthGuard]},
-  {path:'product', component: ProductComponent}
+  {path:'add-product', component: ProductComponent},
+  {path:'all-products', component: ShowProductsComponent}
 ]
 
 @NgModule({
@@ -38,7 +41,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     ProfileComponent,
     ProductComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    ShowProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService, AuthGuard, CreateProductService],
+  providers: [ValidateService, AuthService, AuthGuard, CreateProductService, GetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

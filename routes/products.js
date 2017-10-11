@@ -4,9 +4,28 @@ var multer = require('multer');
 const Product = require('../models/product');
 
 
-router.get('/', (req, res, next) => { //pasport atsimena nustatyta tokena ir islieka aktyvus profilis
-  res.json({product: "veikia"});
+router.get('/show', (req, res) => {
+    var database = []
+    Product.find({}, function (err, foundData) {
+      if(err) {
+        console.log(err)
+        res.status(500).send()
+      } else {
+        var responseObject = foundData
+        res.send(responseObject)
+      }
+    })
 });
+
+router.delete('/delete', (req, res)=>{
+  Product.find({ _id: 'adadad' }, function(err, user){
+    if(err) throw err
+    user.remove(function(err){
+      if(err) throw err
+    })
+    console.log('success')
+  })
+})
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {

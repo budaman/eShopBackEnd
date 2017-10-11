@@ -1,0 +1,26 @@
+<div class="jumbotron text-center">
+
+<h2>Products</h2>
+
+
+<div *ngIf="loading">
+  <div>loading</div>
+</div>
+<div *ngIf="!loading">
+<div class="products" *ngFor="let product of products">
+  <h4>{{product.title}}</h4>
+  <div class="price">Price: {{product.price}}$</div>
+  <div>Quantity: {{product.quantity}}</div>
+  <div>Type: {{product.type}}</div>
+  <img src="assets/{{product.picUrl}}" />
+  <div class="buttons">
+    <button class="btn btn-primary"  >Buy</button>
+    <button class="btn btn-default" >Update Product</button>
+    <button class="btn btn-danger" (click)="deleteProduct(product._id)" >Delete</button>
+  </div>
+  <br>
+  <br>
+</div>
+</div>
+
+</div>
