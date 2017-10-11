@@ -1,0 +1,32 @@
+<h4 class="page-header">Add new product</h4>
+
+<input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+<!-- button to trigger the file upload when submitted -->
+<button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+      Upload with ng-2 file uploader
+</button>
+
+<form (submit)="onProductSubmit()">
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" [(ngModel)]="title" class="form-control" name="title">
+  </div>
+  <div class="form-group">
+    <select [(ngModel)]="type" name="type">
+<option *ngFor="let p of productTypes" [ngValue]="p">{{p}}</option>
+</select>
+  </div>
+  <div class="form-group">
+    <label>Quantity</label>
+    <input type="number" [(ngModel)]="quantity" class="form-control" name="quantity">
+  </div>
+  <div class="form-group">
+    <label>Price</label>
+    <input type="number" [(ngModel)]="price" class="form-control" name="price">
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <input type="text" [(ngModel)]="description" class="form-control" name="description">
+  </div>
+  <input type="submit" name="submit" value="Submit" class="bt btn-primary">
+</form>
