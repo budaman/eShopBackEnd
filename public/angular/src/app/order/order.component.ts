@@ -43,14 +43,9 @@ productId: Object
      this.product = data
      console.log(this.product)
     })
-
-
-    console.log(this.productId)
-
-
-
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user
+      console.log(this.user)
     },
     err=> {
       console.log(err)
