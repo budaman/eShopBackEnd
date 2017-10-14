@@ -24,6 +24,7 @@ export class ShowUsersComponent implements OnInit {
   name: string
   lastname: string
   email: string
+  money: number
   _id: string
 
   ngOnInit() {
@@ -55,11 +56,13 @@ export class ShowUsersComponent implements OnInit {
         this.lastname = user.lastname
         this.email = user.email
         this._id = user._id
+        this.money = user.money
       } else {
         this.name = null
         this.lastname = null
         this.email = null
         this._id = null
+        this.money = null
       }
   }
 
@@ -68,7 +71,8 @@ export class ShowUsersComponent implements OnInit {
       _id: this._id,
       name: this.name,
       lastname: this.lastname,
-      email: this.email
+      email: this.email,
+      money: this.money
     }
 
     console.log(obj)

@@ -40,8 +40,7 @@ router.post('/createOrder', (req, res, next) => {
   }
 });
 
-
-//just example how referience is working
+//just example how referience is working not sure if I will be using in this project
 router.post('/postTest', (req, res, next) => {
 Order.findOne({_id: req.body._id})
 .populate('user')
