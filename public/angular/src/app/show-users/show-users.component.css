@@ -1,0 +1,18 @@
+.updateForm {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  background-color: #CADBC8;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+}
+
+.updateForm div {
+  color: #1F1300
+}

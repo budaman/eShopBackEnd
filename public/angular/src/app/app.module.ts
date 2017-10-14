@@ -15,11 +15,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { ValidateService } from './services/validate.service'
 import { FlashMessagesModule } from 'angular2-flash-messages'
 import { AuthService } from './services/auth.service'
-import { GetService } from './services/get.services'
+import { ProductService } from './services/product.service'
+import { UserService } from './services/user.service'
 import { CreateProductService } from './services/create-product.service'
 import { AuthGuard } from './guards/auth.guard';
 import { ProductComponent } from './product/product.component';
-import { ShowProductsComponent } from './show-products/show-products.component'
+import { ShowProductsComponent } from './show-products/show-products.component';
+import { ShowUsersComponent } from './show-users/show-users.component';
+import { OrderComponent } from './order/order.component'
+import { OrderService } from './services/order.service'
 
 const appRoutes: Routes = [
   {path:'',component: HomeComponent},
@@ -28,7 +32,9 @@ const appRoutes: Routes = [
   {path:'dashboard',component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'profile',component: ProfileComponent, canActivate:[AuthGuard]},
   {path:'add-product', component: ProductComponent},
-  {path:'all-products', component: ShowProductsComponent}
+  {path:'all-products', component: ShowProductsComponent},
+  {path:'show-users', component: ShowUsersComponent},
+  {path: 'order/:id', component: OrderComponent}
 ]
 
 @NgModule({
@@ -42,7 +48,9 @@ const appRoutes: Routes = [
     ProfileComponent,
     ProductComponent,
     FileSelectDirective,
-    ShowProductsComponent
+    ShowProductsComponent,
+    ShowUsersComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +59,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService, AuthGuard, CreateProductService, GetService],
+  providers: [ValidateService, AuthService, AuthGuard, CreateProductService, ProductService, UserService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -42,5 +42,14 @@ export class ValidateService {
     }
   }
 
+  validateUser(user) {
+    if(user.name == undefined || user.lastname == undefined || user.email == undefined ) {
+      console.log(user)
+      return false
+    } else {
+      return true
+    }
+  }
+
 
 }

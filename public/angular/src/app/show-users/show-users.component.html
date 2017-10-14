@@ -1,0 +1,45 @@
+<div class="jumbotron text-center">
+
+<h2>Users</h2>
+
+
+<div *ngIf="loading">
+  <div>loading</div>
+</div>
+<div *ngIf="!loading">
+<div class="products" *ngFor="let user of users">
+  <div>Name: {{user.name}}</div>
+  <div>Lastname:{{user.lastname}}</div>
+  <div>Email: {{user.email}}</div>
+  <div class="buttons">
+    <button class="btn btn-default" (click)="updateUser(user)" >Update User</button>
+    <button class="btn btn-danger" (click)="deleteUser(user._id)" >Delete User</button>
+  </div>
+  <br>
+  <br>
+</div>
+</div>
+
+<div *ngIf="updateForm" class="updateForm">
+  <flash-messages></flash-messages>
+  <div (click)="updateUser()" class="close">
+    X
+  </div>
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="name" class="form-control" name="name">
+  </div>
+  <div class="form-group">
+    <label>Lastname</label>
+    <input type="text" [(ngModel)]="lastname" class="form-control" name="lastname">
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email" class="form-control" name="email">
+  </div>
+  <button type="submit"class="bt btn-primary" (click)="submitUpdate()">Update</button>
+</div>
+
+
+
+</div>

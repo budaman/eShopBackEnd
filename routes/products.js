@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-var multer = require('multer');
+const multer = require('multer');
 const Product = require('../models/product');
 
 
@@ -17,15 +17,32 @@ router.get('/show', (req, res) => {
     })
 });
 
-router.delete('/delete', (req, res)=>{
-  Product.find({ _id: 'adadad' }, function(err, user){
-    if(err) throw err
-    user.remove(function(err){
-      if(err) throw err
-    })
-    console.log('success')
-  })
+
+
+router.delete('/delete:id', (req, res)=>{
+  Product.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
 })
+
+router.put('/update:id', function(req, res, next) {
+  Product.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+router.post('/getproduct', (req, res) => {
+console.log(req.body._id)
+Product.findById(req.body._id, (err, product) => {
+  if(err){
+    res.json({success: false, msg:'Failed to register user'});
+  } else {
+    res.json(product);
+  }
+});
+});
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -43,7 +60,6 @@ router.post('/upload', function(req, res, next){
   var path = ''
   var fileName = ''
   upload(req, res, function(err){
-    console.log(req.file.filename)
     if(err) {
       console.log(err)
       return res.status(422).send('an Error occured')
@@ -55,7 +71,7 @@ router.post('/upload', function(req, res, next){
 })
 
 router.post('/add', (req, res, next) => {
-  console.log('call from front')
+
   let newProduct = new Product({
     title: req.body.title,
     type: req.body.type,
@@ -64,7 +80,7 @@ router.post('/add', (req, res, next) => {
     price: req.body.price,
     description: req.body.description
   });
-  console.log(newProduct)
+
   Product.addProduct(newProduct, (err, user) => {
     if(err){
       res.json({success: false, msg:'Failed to register user'});

@@ -22,6 +22,7 @@ mongoose.connection.on('error', (err) => {
 //routes
 const users = require('./routes/users')
 const products = require('./routes/products')
+const orders = require('./routes/orders')
 
 const app = express()
 app.use(cors()) //allowing forengt enndpoints/api
@@ -37,6 +38,7 @@ require('./config/passport')(passport)
 //routes conf
 app.use('/users', users)
 app.use('/products', products)
+app.use('/orders', orders)
 
 //Set Static folder
 app.use(express.static(path.join(__dirname, "public")))

@@ -1,0 +1,27 @@
+<div class="jumbotron text-center">
+
+<h2>Order</h2>
+
+
+
+<div *ngIf="loading">
+  <div>loading</div>
+</div>
+<div  *ngIf="!loading">
+<div *ngIf="product" class="row">
+  <div class="col-md-6">
+  <h4>{{product.title}}</h4>
+  <div class="price">Price: {{product.price}}$</div>
+  <div>Quantity: {{product.quantity}}</div>
+  <div>Type: {{product.type}}</div>
+  <img src="assets/{{product.picUrl}}" />
+  </div>
+  <div  class="col-md-6">
+    <h4>Name: {{user.name}}</h4>
+    <div>Lastname: {{user.lastname}}</div>
+    <div class="price">Money in account: {{user.money}}</div>
+  </div>
+</div>
+  <button class="btn btn-primary" (click)="buyProduct()"  >Buy</button>
+</div>
+</div>

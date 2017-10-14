@@ -6,6 +6,33 @@ const config = require('../config/database');
 const User = require('../models/user');
 
 
+router.get('/show', (req, res) => {
+    var database = []
+    User.find({}, function (err, foundData) {
+      if(err) {
+        console.log(err)
+        res.status(500).send()
+      } else {
+        var responseObject = foundData
+        res.send(responseObject)
+      }
+    })
+});
+
+router.put('/update:id', function(req, res, next) {
+  User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+router.delete('/delete:id', (req, res)=>{
+  User.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+})
+
 // Register
 router.post('/register', (req, res, next) => {
   console.log('call from front')
@@ -66,7 +93,6 @@ router.post('/authenticate', (req, res, next) => {
 
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => { //pasport atsimena nustatyta tokena ir islieka aktyvus profilis
-  console.log(req.user)
   res.json({user: req.user});
 });
 

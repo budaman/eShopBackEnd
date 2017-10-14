@@ -38,6 +38,10 @@
             <li
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{exact:true}"
+            ><a  [routerLink]="['/show-users']">All-users</a></li>
+            <li
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{exact:true}"
             *ngIf="!authService.loggedIn()"
             ><a  [routerLink]="['/login']">Login</a></li>
             <li
