@@ -41,11 +41,9 @@ productId: Object
     var temp: any[]
     this.productService.getProduct(this.productId).subscribe(data => {
      this.product = data
-     console.log(this.product)
     })
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user
-      console.log(this.user)
     },
     err=> {
       console.log(err)
@@ -57,8 +55,11 @@ productId: Object
   )
   }
 
-  buyProduct() {
-    console.log('labas')
+  createOrder() {
+    this.orderService.createOrder(this.product, this.user, 33)
+    .subscribe(data => {
+     console.log(data)
+    })
   }
 
 }
