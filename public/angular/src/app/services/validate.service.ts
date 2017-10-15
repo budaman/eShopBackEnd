@@ -51,5 +51,14 @@ export class ValidateService {
     }
   }
 
+  validateQuantity(quantity, product) {
+    console.log(quantity)
+    if(quantity <= 0 || quantity>product.quantity) {
+      return false
+    } else {
+      return true
+    }
+  }
+
 
 }

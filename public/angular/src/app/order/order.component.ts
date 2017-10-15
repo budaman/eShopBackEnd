@@ -3,6 +3,9 @@ import { OrderService } from '../services/order.service'
 import { AuthService } from '../services/auth.service'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { ProductService } from '../services/product.service'
+import { FlashMessagesService } from 'angular2-flash-messages'
+import { ValidateService } from '../services/validate.service'
+
 import 'rxjs/add/operator/switchMap'
 
 
@@ -17,12 +20,15 @@ user: Object
 product: Object
 loading: Boolean = true
 productId: Object
+quantity: number = 1
   constructor(
     private productService : ProductService,
     private router : Router,
     private route : ActivatedRoute,
     private orderService : OrderService,
-    private authService : AuthService
+    private authService : AuthService,
+    private flashMessage : FlashMessagesService,
+    private validateService : ValidateService
   ) { }
 
   ngOnInit() {
@@ -56,10 +62,15 @@ productId: Object
   }
 
   createOrder() {
-    this.orderService.createOrder(this.product, this.user, 33)
+    if(!this.validateService.validateQuantity(this.quantity, this.product)) {
+      this.flashMessage.show('Quantity is not correct', {cssClass:'alert-danger', timeout: 3000})
+      return false
+    }
+    this.orderService.createOrder(this.product, this.user, this.quantity)
     .subscribe(data => {
      console.log(data)
     })
+    this.router.navigate(['/all-products']);
   }
 
 }

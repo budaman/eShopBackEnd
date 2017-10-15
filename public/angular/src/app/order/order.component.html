@@ -12,7 +12,7 @@
   <div class="col-md-6">
   <h4>{{product.title}}</h4>
   <div class="price">Price: {{product.price}}$</div>
-  <div>Quantity: {{product.quantity}}</div>
+  <div>Left quantity in shop: {{product.quantity}}</div>
   <div>Type: {{product.type}}</div>
   <img src="assets/{{product.picUrl}}" />
   </div>
@@ -22,6 +22,11 @@
     <div class="price">Money in account: {{user.money}}</div>
   </div>
 </div>
+  <flash-messages></flash-messages>
+  <div>
+    <label for="quantity">Quantity</label>
+  <input type="number" name="quantity"  [(ngModel)]="quantity" >
+  </div>
   <button class="btn btn-primary" (click)="createOrder()"  >Buy</button>
 </div>
 </div>

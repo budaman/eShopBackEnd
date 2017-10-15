@@ -7,7 +7,7 @@ const User = require('../models/user')
 
 router.post('/createOrder', (req, res, next) => {
   let quantity = req.body.product.quantity - req.body.quantity
-  let money = req.body.user.money - req.body.product.price
+  let money = req.body.user.money - (req.body.product.price * req.body.quantity)
 
   if(quantity < 0) {
     res.json({quantityProblem: true})
