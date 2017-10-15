@@ -1,0 +1,18 @@
+<div class="jumbotron text-center">
+<h2 class="page-header">Orders</h2>
+<div *ngIf="loading">
+ <p>loading</p>
+</div>
+
+<div *ngIf="!loading">
+  <div *ngFor="let order of orders">
+    <div>
+      <label for="id">Id</label>
+      <p name="id">{{order._id}}</p>
+      <label for="date">Date</label>
+      <p name="date">{{order.createdOn}}</p>
+    </div>
+    <br>
+  </div>
+</div>
+</div>

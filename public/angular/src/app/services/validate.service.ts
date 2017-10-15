@@ -18,7 +18,6 @@ export class ValidateService {
   }
   validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    console.log(re.test(email))
     return re.test(email);
   }
 
@@ -34,7 +33,6 @@ export class ValidateService {
   }
 
   validateUpload(picUrl){
-    console.log(picUrl)
     if(picUrl=='') {
       return false
     } else {
@@ -44,7 +42,6 @@ export class ValidateService {
 
   validateUser(user) {
     if(user.name == undefined || user.lastname == undefined || user.email == undefined ) {
-      console.log(user)
       return false
     } else {
       return true
@@ -52,7 +49,6 @@ export class ValidateService {
   }
 
   validateQuantity(quantity, product) {
-    console.log(quantity)
     if(quantity <= 0 || quantity>product.quantity) {
       return false
     } else {

@@ -4,13 +4,14 @@ import { RouterModule, Routes } from '@angular/router'
 import { FormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 import { FileSelectDirective } from 'ng2-file-upload'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { ShowOrdersComponent } from './show-orders/show-orders.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ValidateService } from './services/validate.service'
 import { FlashMessagesModule } from 'angular2-flash-messages'
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
   {path:'',component: HomeComponent},
   {path:'register',component: RegisterComponent},
   {path:'login',component: LoginComponent},
-  {path:'dashboard',component: DashboardComponent, canActivate:[AuthGuard]},
+  {path:'show-orders',component: ShowOrdersComponent, canActivate:[AuthGuard]},
   {path:'profile',component: ProfileComponent, canActivate:[AuthGuard]},
   {path:'add-product', component: ProductComponent},
   {path:'all-products', component: ShowProductsComponent},
@@ -44,7 +45,7 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    DashboardComponent,
+    ShowOrdersComponent,
     ProfileComponent,
     ProductComponent,
     FileSelectDirective,
@@ -54,6 +55,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    NgbModule.forRoot(),
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),

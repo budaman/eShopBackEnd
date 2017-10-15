@@ -12,17 +12,20 @@ constructor(private _http: Http) {}
 
 
 createOrder(product, user, quantity) {
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
   let obj = {
     product: product,
     user: user,
-    quantity: quantity,
-    createdOn: today
+    quantity: quantity
   }
   let headers = new Headers()
   headers.append('Content-Type', 'application/json')
   return this._http.post('/orders/createOrder', obj, {headers: headers})
+  .map(res => res.json())
+}
+
+showOrders(){
+  return this._http.get('orders/getOrders')
   .map(res => res.json())
 }
 

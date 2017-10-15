@@ -14,11 +14,14 @@ router.post('/createOrder', (req, res, next) => {
   } else if (money < 0) {
     res.json({moneyProblem: true})
   } else {
+    var gmtRe = /GMT([\-\+]?\d{4})/; // Look for GMT, + or - (optionally), and 4 characters of digits (\d)
+var d = new Date().toString();
+var tz = gmtRe.exec(d)[1];
     let newOrder = new Order({
       user: req.body.user._id,
       product: req.body.product._id,
       quantity: req.body.quantity,
-      createdOn: req.body.createdOn
+      createdOn: Date.now()
     });
     Order.addOrder(newOrder, (err, order) => {
       if(err){
@@ -50,6 +53,17 @@ Order.findOne({_id: req.body._id})
 });
 });
 
-
+router.get('/getOrders', (req, res) => {
+    var database = []
+    Order.find({}, function (err, foundData) {
+      if(err) {
+        console.log(err)
+        res.status(500).send()
+      } else {
+        var responseObject = foundData
+        res.send(responseObject)
+      }
+    })
+});
 
 module.exports = router;

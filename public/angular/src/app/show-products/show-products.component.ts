@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { ProductService } from '../services/product.service'
 import { ValidateService } from '../services/validate.service'
-import { OrderService } from '../services/order.service'
 import { FlashMessagesService } from 'angular2-flash-messages'
 import { AuthService } from '../services/auth.service'
 
@@ -15,7 +14,6 @@ export class ShowProductsComponent implements OnInit {
 
   constructor(
     private productService : ProductService,
-    private orderService : OrderService,
     private router: Router,
     private validateService : ValidateService,
     private flashMessage : FlashMessagesService,
@@ -43,7 +41,6 @@ export class ShowProductsComponent implements OnInit {
         () => {
           this.products = temp
           this.loading = false
-          console.log(this.products)
         }
       )
       }
@@ -99,6 +96,5 @@ export class ShowProductsComponent implements OnInit {
         this.updateForm = !this.updateForm
         this.router.navigate(['/']);
 
-        console.log(obj)
       }
     }

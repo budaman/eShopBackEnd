@@ -21,6 +21,7 @@ product: Object
 loading: Boolean = true
 productId: Object
 quantity: number = 1
+
   constructor(
     private productService : ProductService,
     private router : Router,
@@ -68,9 +69,20 @@ quantity: number = 1
     }
     this.orderService.createOrder(this.product, this.user, this.quantity)
     .subscribe(data => {
-     console.log(data)
+      if(data.moneyProblem) {
+        this.flashMessage.show('You do not have enough money', {cssClass:'alert-danger', timeout: 3000})
+        return false
+      }
+      if(data.quantityProblem) {
+        this.flashMessage.show('Not enough items in the shop for your order', {cssClass:'alert-danger', timeout: 3000})
+        return false
+      } else {
+        this.router.navigate(['/all-products']);
+      }
     })
-    this.router.navigate(['/all-products']);
+
+
+
   }
 
 }

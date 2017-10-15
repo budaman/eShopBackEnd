@@ -43,9 +43,7 @@ export class ProductComponent implements OnInit {
      //overide the onCompleteItem property of the uploader so we are
      //able to deal with the server response.
      this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-          console.log('picture is uploaded')
           this.picUrl = response
-          console.log(this.picUrl)
       };
   }
   onProductSubmit() {
@@ -63,12 +61,9 @@ export class ProductComponent implements OnInit {
     }
 
     if(!this.validateService.validateUpload(product.picUrl)) {
-      console.log('supranta kad neideta nuotrauka')
       this.flashMessage.show('Please upload picture', {cssClass:'alert-danger', timeout: 3000})
       return false
     }
-
-    console.log(this.picUrl)
 
     // Register user
     this.createProductService.createProduct(product).subscribe(data => {

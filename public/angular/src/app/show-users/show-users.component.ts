@@ -36,7 +36,6 @@ export class ShowUsersComponent implements OnInit {
       () => {
         this.users = temp
         this.loading = false
-        console.log(this.users)
       }
     )
   }
@@ -75,8 +74,6 @@ export class ShowUsersComponent implements OnInit {
       money: this.money
     }
 
-    console.log(obj)
-
     if(!this.validateService.validateUser(obj)) {
       this.flashMessage.show('Please fill in all fields', {cssClass:'alert-danger', timeout: 3000})
       return false
@@ -95,8 +92,6 @@ export class ShowUsersComponent implements OnInit {
 
     this.updateForm = !this.updateForm
     this.router.navigate(['/']);
-
-    console.log(obj)
   }
 
 }
