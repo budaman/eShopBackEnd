@@ -8,7 +8,7 @@ import { CreateProductService } from '../services/create-product.service'
 
 
 
-const URL = 'http://localhost:3000/products/upload';
+const URL = '/products/upload';
 
 
 
